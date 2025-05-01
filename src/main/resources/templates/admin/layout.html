@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${title} ?: 'Product Admin'">Product Admin</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <style type="text/tailwindcss">
+        @theme {
+            --color-primary: #3b82f6;
+            --color-secondary: #6b7280;
+            --color-accent: #4f46e5;
+        }
+        .btn-primary {
+            @apply py-2 px-4 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75;
+        }
+        .btn-danger {
+            @apply py-2 px-4 bg-red-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-75;
+        }
+        .nav-link {
+            @apply text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium;
+        }
+        .nav-link-active {
+            @apply bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <div class="min-h-screen flex flex-col">
+        <!-- Navigation -->
+        <nav class="bg-gray-800">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between h-16">
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0">
+                            <span class="text-white text-xl font-bold">Product Admin</span>
+                        </div>
+                        <div class="hidden md:block">
+                            <div class="ml-10 flex items-baseline space-x-4">
+                                <a th:href="@{/admin}" class="nav-link" th:classappend="${currentPage == 'dashboard' ? 'nav-link-active' : ''}">
+                                    Dashboard
+                                </a>
+                                <a th:href="@{/admin/products}" class="nav-link" th:classappend="${currentPage == 'products' ? 'nav-link-active' : ''}">
+                                    Products
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Page content -->
+        <main class="flex-grow">
+            <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+                <!-- Content goes here -->
+                <div th:replace="${content}">Content placeholder</div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-white">
+            <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
+                <p class="text-gray-500 text-center text-sm">
+                    &copy; 2025 Product Admin System. All rights reserved.
+                </p>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
